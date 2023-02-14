@@ -20,6 +20,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />
         <AdminRoutes path="/admin/dashboard" exact component={AdminDashBoard} />
+        <AdminRoutes path="/user/dashboard" exact component={Home}/>
       </Switch>
     </BrowserRouter>
   );

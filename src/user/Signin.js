@@ -69,7 +69,8 @@ const Signin = () => {
     if (didRedirect) {
       if (user && user.role === 1) {
         return <Redirect to="/admin/dashboard"/>
-      }else{
+      }
+      if(user && user.role === 0){
         return <Redirect to="/user/dashboard"/>
       }
     }
