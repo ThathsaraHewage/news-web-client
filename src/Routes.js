@@ -17,6 +17,11 @@ import AddCategory from "./Admin/add-news-category";
 import ManageCategories from "./Admin/manage-news-categories";
 import UpdateCategory  from "./Admin/update-news-category";
 
+// news
+import AddNews from "./Admin/add-news";
+import ManageNews from "./Admin/manage-news";
+import UpdateNews from "./Admin/update-news";
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -40,6 +45,21 @@ const Routes = () => {
           path="/update/news-category/:categoryId"
           exact
           component={UpdateCategory}
+        />
+        <AdminRoutes
+          path="/create/news"
+          exact
+          component={AddNews}
+        />
+         <AdminRoutes
+          path="/manage/news"
+          exact
+          component={ManageNews}
+        />
+        <AdminRoutes
+          path="/update/news/:newsId"
+          exact
+          component={UpdateNews}
         />
       </Switch>
     </BrowserRouter>

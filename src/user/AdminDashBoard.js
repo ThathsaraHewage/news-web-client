@@ -22,10 +22,10 @@ const AdminDashBoard = () => {
               <Link to="/manage/news-category" className="nav-link text-success">Manage Categories</Link>
           </li>
           <li className="list-group-item">
-              <Link to="" className="nav-link text-success">Add a news</Link>
+              <Link to="/create/news" className="nav-link text-success">Add a news</Link>
           </li>
           <li className="list-group-item">
-              <Link to="" className="nav-link text-success">Manage News</Link>
+              <Link to="/manage/news" className="nav-link text-success">Manage News</Link>
           </li>
 
         </ul>
@@ -56,8 +56,8 @@ const AdminDashBoard = () => {
 
   return (
     <Base
-      title="Welcome to Admin Management Area"
-      description="Manage news feed"
+      title="THE NEWS"
+      description="ADMIN DASHBOARD"
       className="container bg-success p-4"
     >
       <div className="row">

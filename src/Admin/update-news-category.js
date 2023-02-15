@@ -134,8 +134,8 @@ const UpdateNewsCategory = ({ match }) => {
 
   return (
     <Base
-      title="Update News Category Here"
-      description="Change a news category name"
+      title="THE NEWS"
+      description="Update news category name"
       className="container bg-success p-4 "
     >
       {goBack()}

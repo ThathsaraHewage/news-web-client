@@ -15,7 +15,7 @@ const AddCategory = () => {
     return (
       <Link className="btn btn=md btn-dark mb-3" to="/admin/dashboard">
         {" "}
-        Admin Home
+        Back to Menu
       </Link>
     );
   };
@@ -95,7 +95,7 @@ const AddCategory = () => {
 
   return (
     <Base
-      title="Create News Category Here"
+      title="THE NEWS"
       description="Add a news category"
       className="container bg-success p-4 "
     >

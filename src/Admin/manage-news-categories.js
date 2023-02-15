@@ -34,12 +34,12 @@ const ManageCategories = () => {
 
   return (
     <Base
-      title="Welcome admin"
-      description="Manage Categories here"
+      title="THE NEWS"
+      description="Manage News Categories here"
       className="container bg-success p-4"
     >
       <Link className="btn btn=md btn-dark mb-3" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
+        <span className="">Back to Menu</span>
       </Link>
       <div className="bg-dark text-white rounded">
         <div className="col-12 mt-3 py-3">

@@ -1,7 +1,13 @@
 import { API } from "../../backend";
 
-//category call
-//create a category
+// CATEGORY
+
+/**
+ * CREATE A NEWS CATEGORY
+ * @param userId
+ * @param token
+ * @param category
+*/
 export const createCategory = (userId, token, category) => {
   return fetch(`${API}/category/create/${userId}`, {
     method: "POST",
@@ -17,7 +23,11 @@ export const createCategory = (userId, token, category) => {
     })
     .catch((err) => console.log(err));
 };
-// get a category
+
+/**
+ * CREATE A NEWS CATEGORY
+ * @param categoryId
+*/
 export const getCategory = categoryId => {
   return fetch(`${API}/category/${categoryId}`, {
     method: "GET"
@@ -27,7 +37,10 @@ export const getCategory = categoryId => {
     })
     .catch((err) => console.log(err));
 };
-//get all categories
+
+/**
+ * GET ALL NEWS CATEGORY
+*/
 export const getAllCategories = () => {
   return fetch(`${API}/categories`, {
     method: "GET",
@@ -37,7 +50,14 @@ export const getAllCategories = () => {
     })
     .catch((err) => console.log(err));
 };
-//update a category
+
+/**
+ * UPDATE A NEWS CATEGORY
+ * @param categoryId
+ * @param userId
+ * @param token
+ * @param category
+*/
 export const updateCategory = (categoryId, userId, token, category) => {
   return fetch(`${API}/category/${categoryId}/${userId}`, {
     method: "PUT",
@@ -52,7 +72,13 @@ export const updateCategory = (categoryId, userId, token, category) => {
     })
     .catch(err => console.log(err));
 };
-//delete a category
+
+/**
+ * DELETE A NEWS CATEGORY
+ * @param userId
+ * @param token
+ * @param category
+*/
 export const deleteCategory = (categoryId, userId, token) => {
   return fetch(`${API}/category/${categoryId}/${userId}`, {
     method: "DELETE",
@@ -67,16 +93,22 @@ export const deleteCategory = (categoryId, userId, token) => {
     .catch((err) => console.log(err));
 };
 
-//products calls
-//create product call
-export const createProduct = (userId, token, product) => {
-  return fetch(`${API}/product/create/${userId}`, {
+// NEWS
+
+/**
+ * CREATE A NEWS
+ * @param userId
+ * @param token
+ * @param news
+*/
+export const createNews = (userId, token, news) => {
+  return fetch(`${API}/create/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: product,
+    body: news,
   })
     .then((response) => {
       return response.json();
@@ -84,9 +116,11 @@ export const createProduct = (userId, token, product) => {
     .catch((err) => console.log(err));
 };
 
-//get All products
-export const getAllProducts = () => {
-  return fetch(`${API}/products`, {
+/**
+ * GET ALL NEWS
+*/
+export const getAllNews = () => {
+  return fetch(`${API}/all/all-live-news`, {
     method: "GET",
   })
     .then((response) => {
@@ -95,9 +129,14 @@ export const getAllProducts = () => {
     .catch((err) => console.log(err));
 };
 
-//delete a product
-export const deleteProduct = (productId, userId, token) => {
-    return fetch(`${API}/product/${productId}/${userId}`, {
+/**
+ * DELETE A NEWS
+ * @param newsId
+ * @param userId
+ * @param token
+*/
+export const deleteNews = (newsId, userId, token) => {
+    return fetch(`${API}/${newsId}/${userId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -110,9 +149,12 @@ export const deleteProduct = (productId, userId, token) => {
       .catch((err) => console.log(err));
   };
 
-// get a product
-export const getProduct = productId => {
-    return fetch(`${API}/product/${productId}`, {
+/**
+ * GET A NEWS
+ * @param newsId
+*/
+export const getNews = newsId => {
+    return fetch(`${API}/live/${newsId}`, {
       method: "GET"
     })
       .then((response) => {
@@ -121,15 +163,21 @@ export const getProduct = productId => {
       .catch((err) => console.log(err));
   };
 
-//update a product
-export const updateProduct = (productId, userId, token, product) => {
-  return fetch(`${API}/product/${productId}/${userId}`, {
+/**
+ * UPDATE A NEWS
+ * @param newsId
+ * @param userId
+ * @param token
+ * @param news
+*/
+export const UpdateNews = (newsId, userId, token, news) => {
+  return fetch(`${API}/update/${newsId}/${userId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: product
+    body: news
   })
     .then(response => {
       return response.json();
