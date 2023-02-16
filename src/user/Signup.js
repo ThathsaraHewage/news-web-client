@@ -9,20 +9,20 @@ const Signup = () => {
     email: "",
     password: "",
     error: "",
-    success: false
+    success: false,
   });
 
   const { name, email, password, error, success } = values;
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
-      .then(data => {
+      .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {
@@ -32,7 +32,7 @@ const Signup = () => {
             email: "",
             password: "",
             error: "",
-            success: true
+            success: true,
           });
         }
       })
@@ -73,7 +73,18 @@ const Signup = () => {
               />
             </div>
             <div className="d-grid py-4">
-               <button onClick={onSubmit} className="btn btn-outline-success rounded-pill">Register</button>
+              <button
+                onClick={onSubmit}
+                className="btn btn-outline-success rounded-pill"
+              >
+                Register
+              </button>{" "}
+              <center>
+                <span>
+                  <br /> <br /> <br />
+                  Do you have an account?<a href="/signin">Login Here</a>
+                </span>
+              </center>
             </div>
           </form>
         </div>

@@ -15,29 +15,29 @@ const Signin = () => {
 
   const { email, password, error, loading, didRedirect } = values;
 
-  const {user} = isAutheticated();
+  const { user } = isAutheticated();
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    setValues({ ...values, error: false, loading:true});
-    signin({email,password})
-    .then( data => {
-      if (data.error) {
-        setValues({ ...values, error: data.error, loading:false});
-      }else{
-        authenticate(data, () => {
-          setValues({
-            ...values,
-            didRedirect: true
+    setValues({ ...values, error: false, loading: true });
+    signin({ email, password })
+      .then((data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error, loading: false });
+        } else {
+          authenticate(data, () => {
+            setValues({
+              ...values,
+              didRedirect: true,
+            });
           });
-        });
-      }
-    })
-    .catch( console.log("sign in requied failed"));
+        }
+      })
+      .catch(console.log("sign in failed"));
   };
 
   const signInForm = () => {
@@ -47,17 +47,37 @@ const Signin = () => {
           <form action="">
             <div className="form-group py-2">
               <label className="text-light">Email</label>
-              <input onChange={handleChange("email")} value={email} className="form-control" type="email" />
+              <input
+                onChange={handleChange("email")}
+                value={email}
+                className="form-control"
+                type="email"
+              />
             </div>
 
             <div className="form-group py-2">
               <label className="text-light">Password</label>
-              <input onChange={handleChange("password")}  value={password} className="form-control" type="password" />
+              <input
+                onChange={handleChange("password")}
+                value={password}
+                className="form-control"
+                type="password"
+              />
             </div>
             <div className="d-grid py-4">
-              <button onClick={onSubmit} className="btn btn-outline-success rounded-pill">
+              <button
+                onClick={onSubmit}
+                className="btn btn-outline-success rounded-pill"
+              >
                 LogIn
               </button>
+
+              <center>
+                <span>
+                  <br /> <br /> <br />
+                  Dont have an account?<a href="/signup">Create your account</a>
+                </span>
+              </center>
             </div>
           </form>
         </div>
@@ -68,10 +88,10 @@ const Signin = () => {
   const performRedirect = () => {
     if (didRedirect) {
       if (user && user.role === 1) {
-        return <Redirect to="/admin/dashboard"/>
+        return <Redirect to="/admin/dashboard" />;
       }
-      if(user && user.role === 0){
-        return <Redirect to="/user/dashboard"/>
+      if (user && user.role === 0) {
+        return <Redirect to="/reader-in/home" />;
       }
     }
 
@@ -81,13 +101,13 @@ const Signin = () => {
   };
 
   const LoadingMessage = () => {
-    return(
+    return (
       loading && (
         <div className="alert alert-info">
           <h2>Loading...</h2>
         </div>
       )
-    )
+    );
   };
 
   const errorMessage = () => {

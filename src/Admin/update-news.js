@@ -13,9 +13,10 @@ const UpdateNewsPage = ({ match }) => {
   const { user, token } = isAutheticated();
 
   // const navigate = useNavigate();
-  
+
   const [values, setValues] = useState({
     name: "",
+    summary: "",
     description: "",
     photo: "",
     categories: [],
@@ -29,6 +30,7 @@ const UpdateNewsPage = ({ match }) => {
 
   const {
     name,
+    summary,
     description,
     categories,
     category,
@@ -48,6 +50,7 @@ const UpdateNewsPage = ({ match }) => {
         setValues({
           ...values,
           name: data.name,
+          summary: data.summary,
           description: data.description,
           category: data.category._id,
           formData: new FormData(),
@@ -84,22 +87,21 @@ const UpdateNewsPage = ({ match }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    UpdateNews(match.params.newsId, user._id, token, formData).then(
-      (data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error });
-        } else {
-          setValues({
-            ...values,
-            name: "",
-            description: "",
-            photo: "",
-            loading: false,
-            createdNews: data.name,
-          });
-        }
+    UpdateNews(match.params.newsId, user._id, token, formData).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          summary: "",
+          description: "",
+          photo: "",
+          loading: false,
+          createdNews: data.name,
+        });
       }
-    );
+    });
   };
 
   const errorMessage = () => {
@@ -138,6 +140,7 @@ const UpdateNewsPage = ({ match }) => {
           />
         </label>
       </div>
+      <span>News Title</span>
       <div className="form-group mt-2">
         <input
           onChange={handleChange("name")}
@@ -147,16 +150,31 @@ const UpdateNewsPage = ({ match }) => {
           value={name}
         />
       </div>
+
+      <span>Summary</span>
+      <div className="form-group mt-2">
+        <textarea
+          onChange={handleChange("summary")}
+          name="photo"
+          className="form-control"
+          placeholder="Short Description about the news"
+          value={summary}
+        />
+      </div>
+
+      <span>Description</span>
       <div className="form-group mt-2">
         <textarea
           onChange={handleChange("description")}
           name="photo"
           className="form-control"
+          style={{ height: "800px" }}
           placeholder="Description"
           value={description}
         />
       </div>
-      
+
+      <span>Change Category</span>
       <div className="form-group mt-2">
         <select
           onChange={handleChange("category")}
@@ -172,7 +190,9 @@ const UpdateNewsPage = ({ match }) => {
             ))}
         </select>
       </div>
-     
+      <br />
+      <br />
+
       <div className="d-grid mt-3">
         <button
           type="submit"
@@ -197,9 +217,18 @@ const UpdateNewsPage = ({ match }) => {
       </Link>
       <div className="row bg-dark text-white rounded">
         <div className="col-md-8 offset-md-2 mt-3 py-3">
+          {UpdateNewsPage()}
           {errorMessage()}
           {successMessage()}
-          {UpdateNewsPage()}
+          <br />
+          <center>
+            <Link
+              to={`/admin/readmore/${match.params.newsId}`}
+              className="btn btn=md btn-dark mb-3"
+            >
+              View Updated Article
+            </Link>
+          </center>
         </div>
       </div>
     </Base>
