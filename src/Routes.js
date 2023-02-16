@@ -68,11 +68,6 @@ const AllRoutes = () => {
         />
         <ReaderRoutes path="/reader/home" exact component={ReaderHome} />
         <ReaderRoutes path="/home" exact component={ReaderHome} />
-        {/* <ReaderRoutes
-          path="/reader/readmore/:newsId"
-          exact
-          component={ReaderReadMore}
-        /> */}
         <Route path="/reader-in/home" exact component={ReaderHome} />
         <UserRoutes
           path="/reader/readmore/:newsId"
