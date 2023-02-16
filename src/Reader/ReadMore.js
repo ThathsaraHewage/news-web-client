@@ -3,11 +3,7 @@ import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import NewsHomeImageHelper from "../core/helper/NewsHomeImageHelper";
 
-import {
-  getAllCategories,
-  getNews,
-  UpdateNews,
-} from "../Admin/helper/admin-api-calls";
+import { getNews } from "../Admin/helper/admin-api-calls";
 import { isAutheticated } from "../user-auth/index";
 
 const ReadMore = ({ match }) => {
@@ -16,49 +12,12 @@ const ReadMore = ({ match }) => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState(false);
 
-  const [values, setValues] = useState({
-    name: "",
-    summary: "",
-    description: "",
-    photo: "",
-    loading: false,
-    createdNews: "",
-    getaRedirect: false,
-    formData: "",
-  });
-
-  const {
-    name,
-    summary,
-    description,
-    loading,
-    createdNews,
-    getaRedirect,
-    formData,
-  } = values;
-
   const loadNews = (newsId) => {
     getNews(newsId).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
         setNews(data);
-      }
-    });
-  };
-
-  const preload = (newsId) => {
-    getNews(newsId).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          name: data.name,
-          summary: data.summary,
-          description: data.description,
-          formData: new FormData(),
-        });
       }
     });
   };
